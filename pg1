@@ -1,0 +1,119 @@
+
+
+import java.util.Scanner;
+import java.util.Arrays;
+
+public class pg1 {
+
+    // Task a: Calculate and display the area of a rectangle
+    public static double calculateRectangleArea(double length, double width) {
+        return length * width;
+    }
+
+    // Task b: Multiply two arrays and display the result
+    public static int[] multiplyArrays(int[] array1, int[] array2) {
+        if (array1.length != array2.length) {
+            System.out.println("Arrays must have the same length for multiplication.");
+            return null;
+        }
+
+        int[] result = new int[array1.length];
+        for (int i = 0; i < array1.length; i++) {
+            result[i] = array1[i] * array2[i];
+        }
+
+        return result;
+    }
+
+    // Task c: Sort elements in ascending order using bubble sort
+    public static void bubbleSortAscending(int[] array) {
+        int n = array.length;
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = 0; j < n - i - 1; j++) {
+                if (array[j] > array[j + 1]) {
+                    // Swap elements if they are in the wrong order
+                    int temp = array[j];
+                    array[j] = array[j + 1];
+                    array[j + 1] = temp;
+                }
+            }
+        }
+    }
+
+    // Task c: Sort elements in descending order using bubble sort
+    public static void bubbleSortDescending(int[] array) {
+        int n = array.length;
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = 0; j < n - i - 1; j++) {
+                if (array[j] < array[j + 1]) {
+                    // Swap elements if they are in the wrong order
+                    int temp = array[j];
+                    array[j] = array[j + 1];
+                    array[j + 1] = temp;
+                }
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Task a: Calculate and display the area of a rectangle
+        System.out.println("Task a: Calculate and display the area of a rectangle");
+        System.out.print("Enter the length of the rectangle: ");
+        double length = scanner.nextDouble();
+        System.out.print("Enter the width of the rectangle: ");
+        double width = scanner.nextDouble();
+        double area = calculateRectangleArea(length, width);
+        System.out.println("Area of the rectangle: " + area);
+
+        // Task b: Multiply two arrays and display the result
+        System.out.println("\nTask b: Multiply two arrays and display the result");
+        System.out.print("Enter the size of the arrays: ");
+        int size = scanner.nextInt();
+
+        int[] array1 = new int[size];
+        int[] array2 = new int[size];
+
+        System.out.println("Enter elements for the first array:");
+        for (int i = 0; i < size; i++) {
+            array1[i] = scanner.nextInt();
+        }
+
+        System.out.println("Enter elements for the second array:");
+        for (int i = 0; i < size; i++) {
+            array2[i] = scanner.nextInt();
+        }
+
+        int[] resultArray = multiplyArrays(array1, array2);
+
+        if (resultArray != null) {
+            System.out.println("Result of multiplication:");
+            System.out.println(Arrays.toString(resultArray));
+        }
+
+        // Task c: Sort elements in ascending and descending order using bubble sort algorithm
+        System.out.println("\nTask c: Sort elements in ascending and descending order using bubble sort");
+        System.out.print("Enter the size of the array for sorting: ");
+        size = scanner.nextInt();
+
+        int[] sortingArray = new int[size];
+
+        System.out.println("Enter elements for the array:");
+        for (int i = 0; i < size; i++) {
+            sortingArray[i] = scanner.nextInt();
+        }
+
+        // Sort in ascending order
+        bubbleSortAscending(sortingArray);
+        System.out.println("Sorted array in ascending order:");
+        System.out.println(Arrays.toString(sortingArray));
+
+        // Sort in descending order
+        bubbleSortDescending(sortingArray);
+        System.out.println("Sorted array in descending order:");
+        System.out.println(Arrays.toString(sortingArray));
+
+        scanner.close();
+    }
+}
