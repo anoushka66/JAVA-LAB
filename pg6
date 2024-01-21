@@ -1,0 +1,115 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+abstract class Bank {
+    protected String name;
+    protected long accountNumber;
+    protected double balance;
+
+    public Bank(String name, long accountNumber, double balance) {
+        this.name = name;
+        this.accountNumber = accountNumber;
+        this.balance = balance;
+    }
+
+    public abstract void calculateInterest();
+
+    public void display() {
+        System.out.println("Name: " + name);
+        System.out.println("Account Number: " + accountNumber);
+        System.out.printf("Balance: ₹%.2f%n", balance); // Display balance in rupees
+    }
+}
+
+class CityBank extends Bank {
+    public CityBank(String name, long accountNumber, double balance) {
+        super(name, accountNumber, balance);
+    }
+
+    @Override
+    public void calculateInterest() {
+        double interestRate = 0.05; // City Bank interest rate: 5%
+        double interest = balance * interestRate;
+        System.out.printf("Interest earned at City Bank: ₹%.2f%n", interest);
+    }
+}
+
+class SBIBank extends Bank {
+    public SBIBank(String name, long accountNumber, double balance) {
+        super(name, accountNumber, balance);
+    }
+
+    @Override
+    public void calculateInterest() {
+        double interestRate = 0.04; // SBI Bank interest rate: 4%
+        double interest = balance * interestRate;
+        System.out.printf("Interest earned at SBI Bank: ₹%.2f%n", interest);
+    }
+}
+
+class CanaraBank extends Bank {
+    public CanaraBank(String name, long accountNumber, double balance) {
+        super(name, accountNumber, balance);
+    }
+
+    @Override
+    public void calculateInterest() {
+        double interestRate = 0.06; // Canara Bank interest rate: 6%
+        double interest = balance * interestRate;
+        System.out.printf("Interest earned at Canara Bank: ₹%.2f%n", interest);
+    }
+}
+
+public class pg6 {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        ArrayList<Bank> banks = new ArrayList<>();
+
+        // Input details for customers
+        for (int i = 0; i < 2; i++) {
+            System.out.println("Enter customer details for Bank " + (i + 1) + ":");
+            System.out.print("Name: ");
+            String name = scanner.nextLine();
+            System.out.print("Account Number: ");
+            long accountNumber = scanner.nextLong();
+            System.out.print("Balance (in rupees): ₹");
+            double balance = scanner.nextDouble();
+            scanner.nextLine(); // Consume newline
+
+            // Choose the bank type
+            System.out.print("Choose the bank type (1. City Bank, 2. SBI Bank, 3. Canara Bank): ");
+            int bankType = scanner.nextInt();
+            scanner.nextLine(); // Consume newline
+
+            // Create the appropriate bank object based on user input
+            Bank bank;
+            switch (bankType) {
+                case 1:
+                    bank = new CityBank(name, accountNumber, balance);
+                    break;
+                case 2:
+                    bank = new SBIBank(name, accountNumber, balance);
+                    break;
+                case 3:
+                    bank = new CanaraBank(name, accountNumber, balance);
+                    break;
+                default:
+                    System.out.println("Invalid bank type. Defaulting to City Bank.");
+                    bank = new CityBank(name, accountNumber, balance);
+                    break;
+            }
+
+            banks.add(bank);
+        }
+
+        // Display details and calculate interest for all customers
+        System.out.println("\nCustomer Details and Interest Calculation:");
+        for (Bank bank : banks) {
+            bank.display();
+            bank.calculateInterest();
+            System.out.println(); // Separate the output for each customer
+        }
+
+        scanner.close();
+    }
+}
