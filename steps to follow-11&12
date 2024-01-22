@@ -1,0 +1,29 @@
+PART A-Download and configure eclipse IDE and tomcat server
+1.	Download Eclipse and Tomcat zip folder of any version(try choosing latest version)
+2.	Set runtime environment of tomcat in eclipse
+-	Windows
+-	Preferences
+-	Server 
+-	 Runtime environment 
+-	Choose the version of apache
+-	Then add the path of the tomcat includes all the folders.
+3.	Add the server 
+PART-B
+ Let's see the steps, you need to follow to create the first servlet example.
+o	Create a Dynamic web project
+o	create a servlet
+o	add servlet-api.jar file
+o	Run the servlet
+1) Create the dynamic web project:
+For creating a dynamic web project 
+click on File Menu -> New -> Dynamic web project -> write your project name e.g. first -> Finish.
+2) Create the servlet in eclipse IDE:
+For creating a servlet, explore the project by clicking 
+the + icon -> explore the Java Resources -> right click on project or application -> New -> servlet -> write your servlet name 
+e.g. Hello -> uncheck all the checkboxes except doGet() -> next -> Finish.
+3) add jar file in eclipse IDE:
+For adding a jar file, right click on your project -> Build Path -> Configure Build Path
+ -> click on Libraries tab in Java Build Path -> click on Add External JARs button
+ -> select the servlet-api.jar file under tomcat/lib -> ok.
+4) Start the server and deploy the project:
+For starting the server and deploying the project in one step, Right click on your project -> Run As -> Run on Server -> choose tomcat server -> next -> addAll -> finish.
