@@ -45,3 +45,14 @@ pw.println("<br><br><a href= 'first.html'>back</a>");
 pw.close();
 }
 }
+
+<web-app>
+<servlet>
+<servlet-name>abc</servlet-name>
+<servlet-class>FirstServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+<servlet-name>abc</servlet-name>
+<url-patter>/check</url-patter>
+</servlet-mapping>
+</web-app>
