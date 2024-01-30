@@ -1,84 +1,92 @@
 import java.util.Scanner;
 
 public class ComplexNumber {
-    private double real;
-    private double imaginary;
+    public double real;
+    public double imaginary;
 
-    
     public ComplexNumber() {
         this.real = 0.0;
         this.imaginary = 0.0;
     }
 
-    
     public ComplexNumber(double real, double imaginary) {
         this.real = real;
         this.imaginary = imaginary;
     }
 
-    
     public double getReal() {
         return real;
     }
 
-    
     public double getImaginary() {
         return imaginary;
     }
 
-    
     public ComplexNumber add(ComplexNumber other) {
         double newReal = this.real + other.real;
         double newImaginary = this.imaginary + other.imaginary;
         return new ComplexNumber(newReal, newImaginary);
     }
 
-    
     public ComplexNumber subtract(ComplexNumber other) {
         double newReal = this.real - other.real;
         double newImaginary = this.imaginary - other.imaginary;
         return new ComplexNumber(newReal, newImaginary);
     }
 
-    
+
     public boolean isEqual(ComplexNumber other) {
         return this.real == other.real && this.imaginary == other.imaginary;
     }
 
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
 
-        
-        System.out.print("Enter the real part of the first complex number: ");
-        double real1 = scanner.nextDouble();
-        System.out.print("Enter the imaginary part of the first complex number: ");
-        double imaginary1 = scanner.nextDouble();
-        ComplexNumber complex1 = new ComplexNumber(real1, imaginary1);
+    public ComplexNumber increment() {
+        this.real++;
+        this.imaginary++;
+        return this;
+    }
+
+    public ComplexNumber decrement() {
+        this.real--;
+        this.imaginary--;
+        return this;
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Enter real 1:");
+        Double real1 = sc.nextDouble();
+        System.out.println("Enter imaginary 1:");
+        Double img1 = sc.nextDouble();
+        ComplexNumber complex1 = new ComplexNumber(real1, img1);
+
+        System.out.println("Enter real 2:");
+        Double real2 = sc.nextDouble();
+        System.out.println("Enter imaginary 2:");
+        Double img2 = sc.nextDouble();
+        ComplexNumber complex2 = new ComplexNumber(real2, img2);
+
+        ComplexNumber sum = complex1.add(complex2);
+        System.out.println("Sum " + sum.getReal() + "+" + sum.getImaginary() + "i");
+
+        ComplexNumber difference = complex1.subtract(complex2);
+        System.out.println("Diff " + difference.getReal() + "+" + difference.getImaginary() + "i");
 
        
-        System.out.print("Enter the real part of the second complex number: ");
-        double real2 = scanner.nextDouble();
-        System.out.print("Enter the imaginary part of the second complex number: ");
-        double imaginary2 = scanner.nextDouble();
-        ComplexNumber complex2 = new ComplexNumber(real2, imaginary2);
 
-        
-        ComplexNumber sum = complex1.add(complex2);
-        System.out.println("Sum: " + sum.getReal() + " + " + sum.getImaginary() + "i");
-
-        
-        ComplexNumber difference = complex1.subtract(complex2);
-        System.out.println("Difference: " + difference.getReal() + " + " + difference.getImaginary() + "i");
-
-        
         if (complex1.isEqual(complex2)) {
-            System.out.println("Complex numbers are equal.");
+            System.out.println("Equal");
         } else {
-            System.out.println("Complex numbers are not equal.");
+            System.out.println("Unequal");
         }
 
-        // Close the scanner
-        scanner.close();
+        complex1.increment();
+        System.out.println("After increment: " + complex1.getReal() + "+" + complex1.getImaginary() + "i");
+
+        complex2.decrement();
+        System.out.println("After decrement: " + complex2.getReal() + "+" + complex2.getImaginary() + "i");
+
+        sc.close();
     }
 }
-
